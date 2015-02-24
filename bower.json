@@ -1,0 +1,28 @@
+{
+  "name": "promocion",
+  "version": "0.0.1",
+  "authors": [
+    "Diana Shultz <dianaschultz24@gmail.com>",
+    "Joel Nahim Rivera Perez<joel.nahim.rivera.perez@gmail.com>",
+    "Domingo Chi Hu <2012010235@upb.edu.mx>",
+    "Isaias Contreras Benitez <isaias.cb@gmail.com>"
+  ],
+  "description": "app promocion UPB",
+  "keywords": [
+    "UPB",
+    "IS",
+    "Software",
+    "promocion"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5"
+  }
+}
