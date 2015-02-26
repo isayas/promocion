@@ -33,9 +33,8 @@ Ejecutar de Servidor HTTP de forma local
 $ python -m SimpleHTTPServer
 ```
 Ir a la aplicacion
-```
 [localhost] (http://localhost:8000/)
-```
+
 
 ## Desarrollado por
 Alumnos de Ing. en Software:
