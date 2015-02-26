@@ -1,72 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- 1. Load platform support before any code that touches the DOM. -->
-    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+<head>
+  <title>UPB</title>
 
-<style type="text/css">
-  /*
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent" >
+  <meta name="format-detection" content="telephone=no">
 
-html, body {
-  height: 100%;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
+  <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+<link rel="manifest" href="icons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
 
-body {
-  margin: 0;
-  background-color: #eee;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-image: url(images/splash.svg);
-  font-family: "RobotoDraft", sans-serif;
-  color: #444;
-  fill: #444;
-  font-weight: 400;
-}
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
-@media screen and (min-width: 900px) {
-  body {
-    background-size: 512px;
+  <link rel="import" href="bower_components/font-roboto/roboto.html">
+<link rel="import"
+  href="bower_components/core-header-panel/core-header-panel.html">
+<link rel="import"
+  href="bower_components/core-toolbar/core-toolbar.html">
+<link rel="import"
+  href="bower_components/paper-tabs/paper-tabs.html">
+  <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+  
+<style>
+  html,body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
   }
-}
+  core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; 
+  }
+  core-toolbar {
+    background: #03a9f4;
+    color: white;
+  }
+  #tabs {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  text-transform: uppercase;
+  }
+  .container {
+    width: 80%;
+    margin: 50px auto;
+  }
+  @media (min-width: 481px) {
+    #tabs {
+      width: 200px;
+    }
+    .container {
+      width: 400px;
+    }
+  }
+  </style>
 
-topeka-app {
-  min-height: 450px;
-  overflow: hidden;
-}
+</head>
 
-  
-</style>>
-
-    <!-- 2. Load the component using an HTML Import -->
-
-<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
-<link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
-
-
-
-    <link rel="import" href="elements/my-element.html">
-  </head>
-  <body fullbleed layout vertical>
-  <core-header-panel mode="standard" id="core_header_panel">
-      <core-toolbar id="core_toolbar">
-        <core-icon-button icon="menu" id="core_icon_button"></core-icon-button>
-        <div id="div">Header</div>
-      </core-toolbar>
-      <section id="section">
-        <core-card id="core_card" layout vertical></core-card>
-      </section>
-    </core-header-panel>
-  <!-- 3. Declare the element by its tag.
-    <my-element></my-element> -->
+<body unresolved layout vertical>
+  <core-header-panel id="core_header_panel">
+    <core-toolbar id="core_toolbar">
+      <core-icon-button icon="menu" id="core_icon_button"></core-icon-button>
+      <div id="div">Encabezado</div>
+    </core-toolbar>
+  </core-header-panel>
+  <core-card id="core_card" layout vertical></core-card>
 </body>
-  
+
 </html>
