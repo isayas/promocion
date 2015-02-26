@@ -3,17 +3,70 @@
   <head>
     <!-- 1. Load platform support before any code that touches the DOM. -->
     <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+<style type="text/css">
+  /*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+html, body {
+  height: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  margin: 0;
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(images/splash.svg);
+  font-family: "RobotoDraft", sans-serif;
+  color: #444;
+  fill: #444;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 900px) {
+  body {
+    background-size: 512px;
+  }
+}
+
+topeka-app {
+  min-height: 450px;
+  overflow: hidden;
+}
+
+  
+</style>>
+
     <!-- 2. Load the component using an HTML Import -->
-    <link rel="import" href="elements/carrera.html">
+
+<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+
+
+
+    <link rel="import" href="elements/my-element.html">
   </head>
   <body fullbleed layout vertical>
-  <core-scroll-header-panel flex>
-    <core-toolbar>
-      <div>Hello World!</div>
-    </core-toolbar>
-  </core-scroll-header-panel>
-  <!-- 3. Declare the element by its tag. -->
-    <carrera></carrera>
+  <core-header-panel mode="standard" id="core_header_panel">
+      <core-toolbar id="core_toolbar">
+        <core-icon-button icon="menu" id="core_icon_button"></core-icon-button>
+        <div id="div">Header</div>
+      </core-toolbar>
+      <section id="section">
+        <core-card id="core_card" layout vertical></core-card>
+      </section>
+    </core-header-panel>
+  <!-- 3. Declare the element by its tag.
+    <my-element></my-element> -->
 </body>
   
 </html>
