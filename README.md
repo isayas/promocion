@@ -41,5 +41,6 @@ Alumnos de Ing. en Software:
 - DIANA LAURA AGUAYO SCHULTZ <2014010740@upb.edu.mx>
 - JOEL NAHIM RIVERA PÉREZ <2014010734@upb.edu.mx>
 - JOSE DOMINGO CHI HU <2012010235@upb.edu.mx>
+
 Asesor 
 - ISAIAS CONTRERAS BENITEZ <isaias.contreras@upb.edu.mx>
