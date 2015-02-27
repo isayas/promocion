@@ -1,1 +1,101 @@
-<!-- pantalla inicial ... lo que tenga designer pegarlo aqui-->
+
+<polymer-element name="my-element">
+
+  <template>
+    <core-animated-pages selectedindex="0" notap id="core_animated_pages">
+      <section id="section1" active>
+        <section id="section"></section>
+        <div id="div" layout horizontal>
+			</div>
+        <div id="div1" class="bottom" hero hero-id="bottom">
+          <span id="span">Universidad Politécnica de Bacalar</span>
+        </div>
+        <core-icon icon="category-images:knowledge" id="core_icon" cross-fade-delayed designmeta="topeka-image"></core-icon>
+        <paper-fab icon="av:play-arrow" focused id="paper_fab"></paper-fab>
+      </section>
+    </core-animated-pages>
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      #core_animated_pages {
+        width: 100%;
+        height: 670px;
+        overflow: hidden;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        background-color: rgb(238, 238, 238);
+      }
+      #paper_icon_button {
+        left: 1210px;
+        top: 490px;
+      }
+      #section1 {
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        background-color: rgb(22, 105, 188);
+      }
+      #section {
+        left: 450px;
+        top: 280px;
+        position: absolute;
+        background-color: rgb(25, 118, 210);
+      }
+      #core_menu_button {
+        left: 90%;
+        top: 380px;
+      }
+      #core_menu {
+        font-size: 16px;
+        left: 1150px;
+        top: 390px;
+      }
+      #paper_fab {
+        left: 1360px;
+        top: 540px;
+        position: absolute;
+        background-color: rgb(62, 123, 123);
+      }
+      #div {
+        left: 820px;
+        top: 330px;
+        position: absolute;
+      }
+      #div1 {
+        box-sizing: border-box;
+        height: 100px;
+        padding: 24px;
+        color: rgb(255, 255, 255);
+        font-size: 32px;
+        left: 0px;
+        top: 570px;
+        position: absolute;
+        width: 1440px;
+        opacity: 1;
+        background-color: rgb(17, 141, 242);
+      }
+      #core_icon {
+        height: 580px;
+        width: 880px;
+        z-index: 100;
+        left: 290px;
+        top: -10px;
+        position: absolute;
+      }
+    </style>
+  </template>
+
+  <script>
+
+    Polymer({
+      
+    });
+
+  </script>
+
+</polymer-element>

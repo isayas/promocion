@@ -29,6 +29,18 @@
 <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
+<meta name="application-name" content="UPB">
+
+  <!--
+  Chrome 35 has old :host behavior before :host-context addition.
+  Since Chrome 35 does not have HTMLImports, we can use this as a decent signal
+  to force the ShadowDOM Polyfill.
+  -->
+  <script>
+    if (!('import' in document.createElement('link'))) {
+      var Platform = {flags: {shadow: true}};
+    }
+  </script>
   <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
   <link rel="import" href="bower_components/font-roboto/roboto.html">
@@ -40,6 +52,27 @@
   href="bower_components/paper-tabs/paper-tabs.html">
   <link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
   
+
+  <link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/hero-transition.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/cross-fade.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/slide-down.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/slide-up.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/tile-cascade.html">
+<link rel="import" href="bower_components/topeka-elements/category-images.html">
+<link rel="import" href="bower_components/core-icon/core-icon.html">
+<link rel="import" href="bower_components/core-icons/core-icons.html">
+<link rel="import" href="bower_components/core-icons/av-icons.html">
+<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+
+<!-- ELEMENTOS CREADOS -->
+
+  <link rel="import" href="elements/pag02.html">
+
+
+
+
+
 <style>
   html,body {
     height: 100%;
@@ -77,18 +110,61 @@
       width: 400px;
     }
   }
+
+  #hero1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background-color: orange;
+  }
+  #hero2 {
+    position: absolute;
+    top: 200px;
+    left: 300px;
+    width: 300px;
+    height: 300px;
+    background-color: orange;
+  }
+  #bottom1, #bottom2 {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    height: 50px;
+  }
+  #bottom1 {
+    background-color: blue;
+  }
+  #bottom2 {
+    background-color: green;
+  }
   </style>
 
 </head>
 
 <body unresolved layout vertical>
-  <core-header-panel id="core_header_panel">
+  <!--<core-header-panel id="core_header_panel">
     <core-toolbar id="core_toolbar">
-      <core-icon-button icon="menu" id="core_icon_button"></core-icon-button>
-      <div id="div">Encabezado</div>
+      <core-icon-button icon="{{$.pages.selected != 0 ? 'arrow-back' : 'menu'}}" on-tap="{{ back }}"></core-icon-button>
+      <div id="div">Universidad Politecnica de Bacalar</div>
     </core-toolbar>
   </core-header-panel>
-  <core-card id="core_card" layout vertical></core-card>
+  
+  <core-animated-pages selected="{{selected}}">
+  <section id="page1">
+    <div hero-id="hero" hero></div>
+  </section>
+  <section id="page2">
+    <div id="foo" hero-id="hero" hero?="{{selected === 1 || selected === 0}}" cross-fade="{{selected === 2}}"></div>
+  </section>
+  <section id="page3">
+  </section>
+</core-animated-pages>
+-->
+<my-element></my-element>
+
 </body>
 
 </html>
