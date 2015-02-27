@@ -4,3 +4,166 @@
 	correo electronico
 	carrera de interes
 -->
+<link rel="import" href="../core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../core-animated-pages/transitions/hero-transition.html">
+<link rel="import" href="../core-animated-pages/transitions/cross-fade.html">
+<link rel="import" href="../core-animated-pages/transitions/slide-down.html">
+<link rel="import" href="../core-animated-pages/transitions/slide-up.html">
+<link rel="import" href="../core-animated-pages/transitions/tile-cascade.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<polymer-element name="my-element">
+
+  <template>
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      #core_animated_pages {
+        width: 460px;
+        height: 710px;
+        overflow: hidden;
+        left: 300px;
+        top: 0px;
+        position: absolute;
+        background-color: rgb(255, 255, 255);
+      }
+      #section {
+        left: 0px;
+        top: 0px;
+        position: absolute;
+      }
+      #section1 {
+        left: -50px;
+        top: 0px;
+        position: absolute;
+      }
+      #section2 {
+        left: 230px;
+        top: 40px;
+        position: absolute;
+      }
+      #section3 {
+        box-sizing: border-box;
+        width: 460px;
+        height: 710px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+      #div {
+        box-sizing: border-box;
+        position: relative;
+        height: 100px;
+        padding: 24px;
+        color: rgb(255, 255, 255);
+        font-size: 32px;
+        width: 460px;
+        background-color: rgb(64, 128, 128);
+      }
+      #span {
+        left: 100px;
+        top: 100px;
+        width: 100px;
+        height: 100px;
+      }
+      #paper_input {
+        position: relative;
+        left: 30px;
+        top: 20px;
+        width: 400px;
+      }
+      #paper_input2 {
+        position: relative;
+        left: 30px;
+        top: 50px;
+        width: 400px;
+      }
+      #paper_input3 {
+        position: relative;
+        left: 30px;
+        top: 100px;
+        width: 400px;
+      }
+      #paper_input1 {
+        position: relative;
+        left: 30px;
+        top: 150px;
+        width: 400px;
+      }
+      #paper_button {
+        width: 120px;
+        position: relative;
+        left: 180px;
+        top: 300px;
+      }
+      #core_item {
+        left: 1120px;
+        top: 430px;
+      }
+      #core_menu {
+        font-size: 16px;
+        left: 1230px;
+        top: 460px;
+      }
+      #core_menu_button {
+        left: 1380px;
+        top: 520px;
+      }
+      #core_pages {
+        width: 400px;
+        height: 400px;
+        border: 1px solid silver;
+        left: 1230px;
+        top: 490px;
+      }
+      #core_scaffold {
+        position: absolute;
+        top: 520px;
+        right: 0px;
+        bottom: 0px;
+        left: 1240px;
+      }
+      #paper_input4 {
+        position: relative;
+        left: 30px;
+        top: 200px;
+        width: 400px;
+      }
+    </style>
+    <section id="section2">
+      <section id="section1">
+        <section id="section" layout horizontal center center-justified>
+      </section>
+      </section>
+    </section>
+    <core-animated-pages selectedindex="0" notap id="core_animated_pages">
+      <section id="section3" layout vertical active>
+        <div id="div" hero>
+          <span id="span" center center-justified>¡Contactanos!</span>
+        </div>
+        <paper-input label="Nombre completo" floatinglabel id="paper_input" name="nombreCompleto" required autovalidate></paper-input>
+        <paper-input label="Edad" floatinglabel id="paper_input2" name="edad" required autovalidate></paper-input>
+        <paper-input label="Escuela de procedencia" floatinglabel id="paper_input3" name="escuelaProcedencia" required autovalidate></paper-input>
+        <paper-input label="Correo electrónico" floatinglabel id="paper_input1" required autovalidate></paper-input>
+        <paper-button raised id="paper_button">Enviar</paper-button>
+        <div id="div1" layout horizontal>
+			</div>
+        <paper-input label="Carrera de interés" id="paper_input4"></paper-input>
+      </section>
+    </core-animated-pages>
+  </template>
+
+  <script>
+
+    Polymer({
+      
+    });
+
+  </script>
+
+</polymer-element>
