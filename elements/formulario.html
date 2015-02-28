@@ -12,7 +12,12 @@
 <link rel="import" href="../core-animated-pages/transitions/tile-cascade.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
-
+<!-- ENVIAR FORMULARIO POR JAVASCRIPT-->
+<script> 
+function enviar_formulario(){ 
+   document.FORMULARIO.submit() 
+} 
+</script> 
 <polymer-element name="my-element">
 
   <template>
@@ -71,31 +76,31 @@
         width: 100px;
         height: 100px;
       }
-      #paper_input {
+      #nombre {
         position: relative;
         left: 30px;
         top: 20px;
         width: 400px;
       }
-      #paper_input2 {
+      #edad {
         position: relative;
         left: 30px;
         top: 50px;
         width: 400px;
       }
-      #paper_input3 {
+      #escuelaProcedencia {
         position: relative;
         left: 30px;
         top: 100px;
         width: 400px;
       }
-      #paper_input1 {
+      #correoElectronico {
         position: relative;
         left: 30px;
         top: 150px;
         width: 400px;
       }
-      #paper_button {
+      #enviar {
         width: 120px;
         position: relative;
         left: 180px;
@@ -128,7 +133,7 @@
         bottom: 0px;
         left: 1240px;
       }
-      #paper_input4 {
+      #carrera {
         position: relative;
         left: 30px;
         top: 200px;
@@ -146,15 +151,16 @@
         <div id="div" hero>
           <span id="span" center center-justified>¡Contactanos!</span>
         </div>
-        <paper-input label="Nombre completo" floatinglabel id="paper_input" name="nombreCompleto" required autovalidate></paper-input>
-        <paper-input label="Edad" floatinglabel id="paper_input2" name="edad" required autovalidate></paper-input>
-        <paper-input label="Escuela de procedencia" floatinglabel id="paper_input3" name="escuelaProcedencia" required autovalidate></paper-input>
-        <paper-input label="Correo electrónico" floatinglabel id="paper_input1" name = "correoElectronico"required autovalidate></paper-input>
-        <paper-button type = "submit" raised id="paper_buttonSend">Enviar</paper-button>
-
-        <div id="div1" layout horizontal>
-			</div>
-        <paper-input label="Carrera de interés" id="paper_input4"></paper-input>
+		<form method = "POST" action = "" name = "FORMULARIO">
+        <paper-input label="Nombre completo" floatinglabel id="nombre" name="nombreCompleto" required autovalidate></paper-input>
+        <paper-input label="Edad" floatinglabel id="edad" name="edad" required autovalidate></paper-input>
+        <paper-input label="Escuela de procedencia" floatinglabel id="escuela" name="escuelaProcedencia" required autovalidate></paper-input>
+        <paper-input label="Correo electrónico" floatinglabel id="correo" name = "correoElectronico"required autovalidate></paper-input>     
+        <paper-input label="Carrera de interés" id="carrera" required autovalidate></paper-input>
+		
+		<paper-button onClick="enviar_formulario()" raised id="enviar">Enviar</paper-button>
+		
+		</form>
       </section>
     </core-animated-pages>
   </template>
