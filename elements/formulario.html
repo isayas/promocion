@@ -13,11 +13,8 @@
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <!-- ENVIAR FORMULARIO POR JAVASCRIPT-->
-<script> 
-function enviar_formulario(){ 
-   document.FORMULARIO.submit() 
-} 
-</script> 
+<script language = "javascript" src = "js/validacion.js">
+</script>
 <polymer-element name="my-element">
 
   <template>
@@ -151,14 +148,14 @@ function enviar_formulario(){
         <div id="div" hero>
           <span id="span" center center-justified>¡Contactanos!</span>
         </div>
-		<form method = "POST" action = "" name = "FORMULARIO">
-        <paper-input label="Nombre completo" floatinglabel id="nombre" name="nombreCompleto" required autovalidate></paper-input>
-        <paper-input label="Edad" floatinglabel id="edad" name="edad" required autovalidate></paper-input>
-        <paper-input label="Escuela de procedencia" floatinglabel id="escuela" name="escuelaProcedencia" required autovalidate></paper-input>
-        <paper-input label="Correo electrónico" floatinglabel id="correo" name = "correoElectronico"required autovalidate></paper-input>     
-        <paper-input label="Carrera de interés" id="carrera" required autovalidate></paper-input>
+		<form method = "POST" action = "" name = "form" onSubmit = "js/validacion.js">
+        <paper-input label="Nombre completo" floatinglabel id="nombre" name="nombreCompleto" required ></paper-input>
+        <paper-input label="Edad" floatinglabel id="edad" name="edad" required ></paper-input>
+        <paper-input label="Escuela de procedencia" floatinglabel id="escuela" name="escuelaProcedencia" required ></paper-input>
+        <paper-input label="Correo electrónico" floatinglabel id="correo" name = "correoElectronico"required ></paper-input>     
+        <paper-input label="Carrera de interés" id="carrera" required ></paper-input>
 		
-		<paper-button onClick="enviar_formulario()" raised id="enviar">Enviar</paper-button>
+		<paper-button type = "submit" onClick="validacion()" raised id="enviar">Enviar</paper-button>
 		
 		</form>
       </section>
