@@ -1,0 +1,123 @@
+<link rel="import" href="../core-icons/av-icons.html">
+
+<polymer-element name="video-overlay" attributes="thumbnail video">
+  <template>
+    <style>
+      /* <video-overlay> */
+      :host {
+        display:inline-block;
+        line-height:0;
+        color:#fff;
+      }
+
+      /* THUMBNAIL */
+      #thumbnail-wrap {
+        display:inline-block;
+        position:relative;
+        line-height:0;
+      }
+      #thumbnail-wrap:hover {
+        cursor:pointer;
+      }
+      #thumbnail {
+        transition:all 1s;
+      }
+      #thumbnail-wrap:hover #thumbnail {
+        opacity:.75;
+      }
+      #play-arrow {
+        width:100px;
+        height:100px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin:-50px 0 0 -50px;
+        opacity:.5;
+        transition:all 1s;
+      }
+      #thumbnail-wrap:hover #play-arrow {
+        opacity:1;
+      }
+
+      /* OVERLAY */
+      #overlay {
+        display:none;
+        position:absolute;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0;
+        background:rgba(0,0,0,.5);
+      }
+      #embed-wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -94px;
+        margin-left: -160px;
+        width: 320px;
+        height: 188px;
+      }
+      @media (min-width: 500px) {
+        #embed-wrap {
+          margin-top: -140px;
+          margin-left: -250px;
+          width: 500px;
+          height: 290px;
+        }
+      }
+      @media (min-width: 800px) {
+        #embed-wrap {
+          margin-top: -229px;
+          margin-left: -400px;
+          width: 800px;
+          height: 458px;
+        }
+      }
+      #embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #close-overlay {
+        position:absolute;
+        top:10px;
+        right:10px;
+        width:30px;
+        height:30px;
+        opacity:1;
+        transition:all 1s;
+      }
+      #close-overlay:hover {
+        cursor:pointer;
+        opacity:.5;
+      }
+    </style>
+    <div id="thumbnail-wrap" on-click="{{popOutVideo}}">
+      <img id="thumbnail" src="{{thumbnail}}" />
+      <core-icon id="play-arrow" icon="av:play-circle-fill"></core-icon>
+    </div>
+    <div id="overlay" on-click="{{hideOverlay}}">
+      <div id="embed-wrap">
+        <iframe src="" id="embed" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+      <core-icon id="close-overlay" icon="cancel"></core-icon>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      thumbnail: "",
+      video: "",
+      popOutVideo: function() {
+        this.$.overlay.style.display = "block";
+        this.$.embed.src = this.video;
+      },
+      hideOverlay:  function() {
+        this.$.overlay.style.display = "none";
+        this.$.embed.src = "";
+      }
+    });
+  </script>
+</polymer-element>

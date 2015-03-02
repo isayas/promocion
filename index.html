@@ -42,20 +42,24 @@
   }
 </script>
 <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
-
 <link href="bower_components/core-animated-pages/core-animated-pages.html" rel="import">
 <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-<link rel="import" href="bower_components/core-scroll-header-panel/core-scroll-header-panel.html">
+<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+
+<link rel="import" href="bower_components/core-media-query/core-media-query.html">
 
 <link rel="import" href="bower_components/topeka-elements/category-icons.html">
 <link rel="import" href="bower_components/core-icon/core-icon.html">
+<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
 <link rel="import" href="bower_components/core-iconset-svg/core-iconset-svg.html">
+<link href="bower_components/paper-shadow/paper-shadow.html" rel="import">
+<link href="bower_components/paper-item/paper-item.html" rel="import">
 
 <style>
   html,body {
     margin: 0;
     background-color: #E5E5E5;
-    font-family: 'RobotoDraft', sans-serif;
+    font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
   }
   /*
   upb-app {
@@ -81,7 +85,14 @@
   <polymer-element name="upb-app">
   <template>
     <style>
+      section {
+        padding: 5px;
+      }
 
+      section > div {
+        padding: 5px;
+        font-size: 16px;
+      }
       .chip-container {
         position: absolute;
         top: 275px;
@@ -114,7 +125,7 @@
         padding: 200px 10% 0;
       }
       .card {
-        height: 500px;
+        height: 400px;
         border-radius: 3px;
         text-align: start;
         overflow: hidden;
@@ -122,21 +133,31 @@
         box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
       .card-left {
-        width: 300px;
+        width: 200px;
       }
-      .card-right {
-        padding: 24px;
+      .card-left.false {
+        display: none;
       }
-
-      #core_scroll_header_panel {
+      .panel {
         width: 100%;
-        height: 460px;
+        height: 400px;
       }
       #core_toolbar {
         color: rgb(241, 241, 241);
         fill: rgb(241, 241, 241);
       }
-
+      .core-header {
+      height: 60px;
+      line-height: 60px;
+      font-size: 18px;
+      padding: 0 10px;
+      background-color: #4F7DC9;
+      color: #FFF;
+      transition: height 0.2s;
+    }
+    .core-header.tall {
+      height: 180px;
+    }
       .card-icon {
         border-radius: 50%;
         width: 60px;
@@ -146,22 +167,30 @@
       .card-album-title {
         font-size: 2em;
       }
-
-      .card-content {
-        margin: 10px;
-        border-radius: 5px;
-        color: rgb(85, 85, 85);
-        text-align: justify;
-        background-color: rgb(255, 255, 255);
-      }
       .card-title {
         font-size: 22px;
         color: rgb(136, 136, 136);
       }
       .card-text {
         font-size: 16px;
+        background-color: #fafafa;
+  padding: 16px;
       }
       
+
+#video-container {
+  top:0%;
+  left:0%;
+  height:400px;
+  width:100%;
+  overflow: hidden;
+}
+video {
+  z-index:0;
+  height: 400px;
+
+}
+
     </style>
     <core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
 
@@ -178,143 +207,87 @@
               <div class="chip-artist">{{item.nombre}}</div>
             </div>
           </div>
-
         </template>
-
       </div>
     </section>
 
     <section id="details">
-
       <div class="card" layout horizontal hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}" hero on-tap="{{transition}}">
-        <div class="card-left" style="background:{{selectedC.color}};" hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}-art" hero></div>
+        <div class="card-left {{wide}}" style="background:{{selectedC.color}};" hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}-art" hero>
+          <div id="video-container">
+<video autoplay>
+<source src="http://upload.wikimedia.org/wikipedia/commons/7/7e/2010-07-14-Blitze-Zeitlupe-1-08.ogg"/>
+</video>
+</div>
+        </div>
         <div class="card-right" flex>
-          <!--
-          <div layout vertical center>
-            <div>
-              <div class="card-icon" style="background:{{selectedC.color}};"></div>
-            </div>
-
-            <div flex>
-              <div class="card-album-title">{{selectedC.tipo}}</div>
-              <div class="card-album-artist">{{selectedC.nombre}}</div>
-              <div class="card-content">
-                <div class="card-title">Objetivo</div>
-                <div class="card-text">{{selectedC.objetivo}}</div>
-              </div>
-              <div class="card-content">
-                <div class="card-title">Qu&eacute; podr&eacute; hacer?</div>
-                <div class="card-text">
-                  <ul>
-                    <template repeat="{{text, index in selectedC.hacer}}">
-                     <li>{{text}}</li>
-                   </template>
-                 </ul>
-               </div>
-             </div>
-             <div class="card-content">
-              <div class="card-title">Qu&eacute; debo cubrir?</div>
-              <div class="card-text">
-                <ul>
-                  <template repeat="{{text, index in selectedC.cubrir}}">
-                   <li>{{text}}</li>
-                 </template>
-               </ul>
-             </div>
-           </div>
-           <div class="card-content">
-            <div class="card-title">D&oacute;nde podr&eacute; trabajar?</div>
-            <div class="card-text">
-              <ul>
-                <template repeat="{{text, index in selectedC.trabajar}}">
-                 <li>{{text}}</li>
-               </template>
-             </ul>
-           </div>
-
-         </div>
-         
-       </div>
-     </div>
-   </div>
-<!-->
-<core-scroll-header-panel headermargin="128" condenses headerheight="192" id="core_scroll_header_panel">
-      <core-toolbar id="core_toolbar" class="tall" style="background:{{selectedC.color}};">
-        <core-icon-button icon="arrow-back" id="core_icon_button"></core-icon-button>
-        <div id="div" flex></div>
-        <core-icon-button icon="more-vert" id="core_icon_button2"></core-icon-button>
-        {{selectedC.tipo}}&nbsp;{{selectedC.nombre}}
-              
-      </core-toolbar>
-      <section id="section" content>
-        <core-card layout vertical>
-          <div id="card-content">
+          <core-header-panel class="panel" mode="waterfall-tall">
+          <core-toolbar id="core_toolbar" class="core-header" style="background:{{selectedC.color}};">
+          <core-icon-button icon="arrow-back" id="core_icon_button"></core-icon-button>
+          <div id="div" flex>{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}
+</div>
+          <core-icon-button icon="favorite" id="core_icon_button"></core-icon-button>
+          
+          </core-toolbar>
+        <section id="section" content>
+          <paper-shadow z="1">
             <div class="card-title">Objetivo</div>
             <div class="card-text">{{selectedC.objetivo}}</div>
-          </div>
-        </core-card>
+          </paper-shadow>
       </section>
-      <section id="sectionV" content>
-        <core-card layout vertical>
-          <div id="card-content">
-            VIDEO
-          </div>
-        </core-card>
-      </section>
-      <section id="section2" content>
-        <core-card layout vertical>
-          <div class="card-content">
-            <div class="card-title">Qu&eacute; podr&eacute; hacer?</div>
-            <div class="card-text">
-              <ul>
-                <template repeat="{{text, index in selectedC.hacer}}">
-                 <li>{{text}}</li>
-               </template>
-              </ul>
-            </div>
-          </div>
-        </core-card>
-      </section>
-      <section id="section3" content>
-        <div class="card-content">
-          <div class="card-title">Qu&eacute; debo cubrir?</div>
-          <div class="card-text">
-            <ul>
-              <template repeat="{{text, index in selectedC.cubrir}}">
-               <li>{{text}}</li>
-             </template>
-           </ul>
-         </div>
-       </div>
-      </section>
-      <section id="section4" content>
-        <div class="card-content">
-          <div class="card-title">D&oacute;nde podr&eacute; trabajar?</div>
-          <div class="card-text">
-            <ul>
-              <template repeat="{{text, index in selectedC.trabajar}}">
-               <li>{{text}}</li>
-             </template>
-           </ul>
-          </div>
+      
+    <section id="section2" content>
+      <paper-shadow z="1">
+        <div class="card-title">Qu&eacute; podr&eacute; hacer?</div>
+        <div class="card-text">
+          <template repeat="{{text, index in selectedC.hacer}}">
+            <paper-item>{{text}}</paper-item>
+          </template>
         </div>
-      </section>
-    </core-scroll-header-panel>
+     </paper-shadow>
+ </section>
+ <section id="section3" content>
+  <paper-shadow z="1">
+      <div class="card-title">Qu&eacute; debo cubrir?</div>
+    <div class="card-text">
+      <template repeat="{{text, index in selectedC.cubrir}}">
+         <paper-item>{{text}}</paper-item>
+      </template>
+     
+   </div>
+ </paper-shadow>
+<section id="section4" content>
+  <paper-shadow z="1">
+            <div class="card-title">D&oacute;nde podr&eacute; trabajar?</div>
+    <div class="card-text">
+      <template repeat="{{text, index in selectedC.trabajar}}">
+         <paper-item>{{text}}</paper-item>
+       </template>
+   </div>
+ </paper-shadow>
+</section>
+</core-header-panel>
 
 
- </div>
+</div>
 
 
 
 </section>
 
 </core-animated-pages>
+
+<core-media-query query="min-width: {{responsiveWidth}}" queryMatches="{{wide}}"></core-media-query>
+
+
 </template>
 <script>
   Polymer('upb-app', {
     page: 0,
+    responsiveWidth: '700px',
+    
     items: [
-    { nombre: 'en Software', tipo: 'Ing. ', color: '#4CAF50',
+    { nombre: 'en Software', tipo: 'Ing.', color: '#4CAF50',
     objetivo: 'Formar ingenieros capaces de desarrollar soluciones en software con calidad y eficiencia, quienes contribuyan al crecimiento y progreso de la sociedad.',
     hacer: ['Disenar y desarrollar software de calidad, con capacidad para gestionar, administrar e implementar proyectos en el campo de las Tecnologías de la Informacion.','Analisis, diseno, construcción y desarrollo de software a la medida del cliente.','Administracion de Bases de Datos.','Administracion de Proyectos'],
     cubrir: ['Interés por desarrollar soluciones a problemas en su entorno',' Disposición de trabajo en equipo','Gusto por las tecnologías computacionales','Compromiso y motivacion'],

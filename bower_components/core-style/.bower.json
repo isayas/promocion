@@ -13,6 +13,6 @@
     "commit": "f4ecd52d5def71f9368b43b77f3b98a36ad1d893"
   },
   "_source": "git://github.com/Polymer/core-style.git",
-  "_target": "^0.5",
+  "_target": "^0.5.0",
   "_originalSource": "Polymer/core-style"
 }

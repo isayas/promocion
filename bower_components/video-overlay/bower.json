@@ -1,0 +1,26 @@
+{
+  "name": "video-overlay",
+  "version": "0.0.0",
+  "authors": [
+    "Brett Clapper <clapperbrett@gmail.com>"
+  ],
+  "main": "video-overlay.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "YouTube",
+    "Vimeo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.4.2",
+    "core-elements": "Polymer/core-icons#~0.4.2"
+  }
+}

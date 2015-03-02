@@ -1,0 +1,36 @@
+{
+  "name": "video-overlay",
+  "authors": [
+    "Brett Clapper <clapperbrett@gmail.com>"
+  ],
+  "main": "video-overlay.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "YouTube",
+    "Vimeo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.4.2",
+    "core-elements": "Polymer/core-icons#~0.4.2"
+  },
+  "homepage": "https://github.com/baclap/video-overlay",
+  "_release": "4c2331c7a0",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4c2331c7a0279e4c6086ec484f396e346837e9a4"
+  },
+  "_source": "git://github.com/baclap/video-overlay.git",
+  "_target": "*",
+  "_originalSource": "video-overlay",
+  "_direct": true
+}
