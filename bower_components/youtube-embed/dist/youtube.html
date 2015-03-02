@@ -1,0 +1,98 @@
+<!-- Import Polymer -->
+<link rel="import" href="../../polymer/polymer.html">
+
+<polymer-element name="youtube-embed"
+         attributes="theme width height showinfo loop end color autoplay autohide videoid rel enablejsapi container">
+
+    <template>
+        <template if="{{videoid == 'videoid'}}">
+            <p class="youtube-embed-error">Inform the url of the video, e g: <code class="youtube-embed-code">&lt;youtube src="http://www.youtube.com/embed/M7lc1UVf-VE"&gt;</code></p>
+
+            <style>
+                .youtube-embed-error {
+                    font-size: 12px; 
+                    color: #171717;
+                }
+
+                .youtube-embed-code {
+                    font-style: italic;
+                }
+            </style>
+        </template>
+    </template>
+
+    <script>
+        Polymer('youtube-embed', {
+            videoid     : 'videoid',
+            theme       : 'dark',
+            width       : 500,
+            height      : 300,
+            showinfo    : 1,
+            loop        : 0,
+            end         : 0,
+            color       : 'red',
+            autoplay    : 0,
+            autohide    : 2,
+            enablejsapi : 1,
+            rel         : 0,
+            container   : '',
+
+            ready: function () {
+                if (this.videoid != 'videoid') {
+                    this.createIframe();
+                }
+            },
+
+            createIframe: function () {
+                var iframe = document.createElement('iframe');
+
+                iframe.width = this.width;
+                iframe.height = this.height;
+                iframe.style.border = 'none';
+                iframe.classList.add('youtube-embed-video');
+                iframe.src = '//www.youtube.com/embed/' + this.videoid +
+                                '?theme=' + this.theme +
+                                '&amp;showinfo=' + this.showinfo +
+                                '&amp;loop=' + this.loop +
+                                '&amp;end=' + this.end +
+                                '&amp;color=' + this.color +
+                                '&amp;autoplay=' + this.autoplay +
+                                '&amp;autohide=' + this.autohide +
+                                '&amp;rel=' + this.rel +
+                                '&amp;enablejsapi=' + this.enablejsapi;
+
+                this.insertIframe(iframe);
+            },
+
+            insertIframe: function (iframe) {
+                var containerElement;
+
+                if (this.container === '') {
+                    this.insertAfter(iframe, this);
+                } else {
+                    containerElement = document.querySelector(this.container);
+                    containerElement.appendChild(iframe);
+                }
+            },
+
+            insertAfter: function (newElement,targetElement) {
+                var parent = targetElement.parentNode;
+             
+                if (parent.lastchild == targetElement) {
+                    parent.appendChild(newElement);
+                } else {
+                    parent.insertBefore(newElement, targetElement.nextSibling);
+                }
+            }
+        });
+    </script>
+
+    <style>     
+        @media all and (max-width: 500px) {
+            .youtube-embed-video {
+                width: 100%;
+            }
+        }
+    </style>
+
+</polymer-element>

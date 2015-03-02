@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UPB</title>
+	<title>UPB</title>
 
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-touch-fullscreen" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style"
-  content="black-translucent" >
-  <meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent" >
+	<meta name="format-detection" content="telephone=no">
+<meta charset="utf-8" />
 
-  <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-  <link rel="manifest" href="icons/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+	<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+	<link rel="manifest" href="icons/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 
-  <meta name="application-name" content="UPB">
+	<meta name="application-name" content="UPB">
 
-  <!--
-  Chrome 35 has old :host behavior before :host-context addition.
-  Since Chrome 35 does not have HTMLImports, we can use this as a decent signal
-  to force the ShadowDOM Polyfill.
+	<!--
+	Chrome 35 has old :host behavior before :host-context addition.
+	Since Chrome 35 does not have HTMLImports, we can use this as a decent signal
+	to force the ShadowDOM Polyfill.
 -->
 <script>
-  if (!('import' in document.createElement('link'))) {
-    var Platform = {flags: {shadow: true}};
-  }
+	if (!('import' in document.createElement('link'))) {
+		var Platform = {flags: {shadow: true}};
+	}
 </script>
 <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 <link href="bower_components/core-animated-pages/core-animated-pages.html" rel="import">
@@ -54,216 +55,208 @@
 <link rel="import" href="bower_components/core-iconset-svg/core-iconset-svg.html">
 <link href="bower_components/paper-shadow/paper-shadow.html" rel="import">
 <link href="bower_components/paper-item/paper-item.html" rel="import">
+<link href="bower_components/paper-dialog/paper-action-dialog.html" rel="import">
+<link href="bower_components/paper-input/paper-input.html" rel="import">
+<link href="bower_components/paper-slider/paper-slider.html" rel="import">
+<link href="bower_components/paper-button/paper-button.html" rel="import">
+
+<link href="bower_components/youtube-embed/dist/youtube.html" rel="import">
 
 <style>
-  html,body {
-    margin: 0;
-    background-color: #E5E5E5;
-    font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-  }
-  /*
-  upb-app {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  } */
-  .blue {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 350px;
-    background: #303F9F;
-  }
+	html,body {
+		margin: 0;
+		background-color: #E5E5E5;
+		font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+	}
+	/*
+	upb-app {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	} */
+	.blue {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: 350px;
+		background: #303F9F;
+	}
 </style>
 </head>
 
 <body unresolved>
-  <polymer-element name="upb-app">
-  <template>
-    <style>
-      section {
-        padding: 5px;
-      }
+	<polymer-element name="upb-app">
+	<template>
+		<style>
+			section {
+				padding: 5px;
+			}
+			section > div {
+				padding: 5px;
+				font-size: 16px;
+			}
+			.chip-container {
+				position: absolute;
+				top: 275px;
+				right: 0;
+				left: 0;
+				text-align: center;
+			}
+			.chip {
+				display: inline-block;
+				position: relative;
+				border-radius: 3px;
+				margin: 4px;
+				overflow: hidden;
+				text-align: start;
+				background-color: #fff;
+				box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+			}
+			.chip-top {
+				width: 200px;
+				height: 200px;
+			}
+			.chip-bottom {
+				padding: 8px;
+				line-height: 1.5;
+			}
+			.chip-album-title {
+				font-weight: bold;
+			}
+			#details {
+				padding: 200px 10% 0;
+			}
+			.card {
+				height: 400px;
+				border-radius: 3px;
+				text-align: start;
+				overflow: hidden;
+				background: #fff;
+				box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			}
+			.card-left {
+				width: 200px;
+			}
+			.card-left.false {
+				display: none;
+			}
+			.panel {
+				width: 100%;
+				height: 400px;
+			}
+			#core_toolbar {
+				color: rgb(241, 241, 241);
+				fill: rgb(241, 241, 241);
+			}
+			.core-header {
+				height: 60px;
+				line-height: 60px;
+				font-size: 18px;
+				padding: 0 10px;
+				background-color: #4F7DC9;
+				color: #FFF;
+				transition: height 0.2s;
+			}
+			.core-header.tall {
+				height: 180px;
+			}
+			.card-icon {
+				border-radius: 50%;
+				width: 60px;
+				height: 60px;
+				margin-right: 16px;
+			}
+			.card-album-title {
+				font-size: 2em;
+			}
+			.card-title {
+				font-size: 22px;
+				color: rgb(136, 136, 136);
+			}
+			.card-text {
+				font-size: 16px;
+				background-color: #fafafa;
+				padding: 16px;
+			}
 
-      section > div {
-        padding: 5px;
-        font-size: 16px;
-      }
-      .chip-container {
-        position: absolute;
-        top: 275px;
-        right: 0;
-        left: 0;
-        text-align: center;
-      }
-      .chip {
-        display: inline-block;
-        position: relative;
-        border-radius: 3px;
-        margin: 4px;
-        overflow: hidden;
-        text-align: start;
-        background-color: #fff;
-        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
-      }
-      .chip-top {
-        width: 200px;
-        height: 200px;
-      }
-      .chip-bottom {
-        padding: 8px;
-        line-height: 1.5;
-      }
-      .chip-album-title {
-        font-weight: bold;
-      }
-      #details {
-        padding: 200px 10% 0;
-      }
-      .card {
-        height: 400px;
-        border-radius: 3px;
-        text-align: start;
-        overflow: hidden;
-        background: #fff;
-        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      .card-left {
-        width: 200px;
-      }
-      .card-left.false {
-        display: none;
-      }
-      .panel {
-        width: 100%;
-        height: 400px;
-      }
-      #core_toolbar {
-        color: rgb(241, 241, 241);
-        fill: rgb(241, 241, 241);
-      }
-      .core-header {
-      height: 60px;
-      line-height: 60px;
-      font-size: 18px;
-      padding: 0 10px;
-      background-color: #4F7DC9;
-      color: #FFF;
-      transition: height 0.2s;
-    }
-    .core-header.tall {
-      height: 180px;
-    }
-      .card-icon {
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        margin-right: 16px;
-      }
-      .card-album-title {
-        font-size: 2em;
-      }
-      .card-title {
-        font-size: 22px;
-        color: rgb(136, 136, 136);
-      }
-      .card-text {
-        font-size: 16px;
-        background-color: #fafafa;
-  padding: 16px;
-      }
-      
-
-#video-container {
-  top:0%;
-  left:0%;
-  height:400px;
-  width:100%;
-  overflow: hidden;
+			html /deep/ paper-action-dialog::shadow #scroller {
+    height: 300px;
+    width: 340px;
 }
-video {
-  z-index:0;
-  height: 400px;
+		</style>
+		<core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
 
-}
+		<section>
 
-    </style>
-    <core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
+			<div class="chip-container" hero-p on-tap="{{transition}}">
 
-    <section>
+				<template repeat="{{items as item}}">
 
-      <div class="chip-container" hero-p on-tap="{{transition}}">
+					<div class="chip" hero-id="{{item.tipo}}-{{item.nombre}}" hero?="{{selectedC === item }}">
+						<div class="chip-top" style="background:{{item.color}};" hero-id="{{item.tipo}}-{{item.nombre}}-art" hero?="{{selectedC === item}}"></div>
+						<div class="chip-bottom">
+							<div class="chip-album-title">{{item.tipo}}</div>
+							<div class="chip-artist">{{item.nombre}}</div>
+						</div>
+					</div>
+				</template>
+			</div>
+		</section>
 
-        <template repeat="{{items as item}}">
-
-          <div class="chip" hero-id="{{item.tipo}}-{{item.nombre}}" hero?="{{selectedC === item }}">
-            <div class="chip-top" style="background:{{item.color}};" hero-id="{{item.tipo}}-{{item.nombre}}-art" hero?="{{selectedC === item}}"></div>
-            <div class="chip-bottom">
-              <div class="chip-album-title">{{item.tipo}}</div>
-              <div class="chip-artist">{{item.nombre}}</div>
-            </div>
-          </div>
-        </template>
-      </div>
-    </section>
-
-    <section id="details">
-      <div class="card" layout horizontal hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}" hero on-tap="{{transition}}">
-        <div class="card-left {{wide}}" style="background:{{selectedC.color}};" hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}-art" hero>
-          <div id="video-container">
-<video autoplay>
-<source src="http://upload.wikimedia.org/wikipedia/commons/7/7e/2010-07-14-Blitze-Zeitlupe-1-08.ogg"/>
-</video>
-</div>
-        </div>
-        <div class="card-right" flex>
-          <core-header-panel class="panel" mode="waterfall-tall">
-          <core-toolbar id="core_toolbar" class="core-header" style="background:{{selectedC.color}};">
-          <core-icon-button icon="arrow-back" id="core_icon_button"></core-icon-button>
-          <div id="div" flex>{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}
-</div>
-          <core-icon-button icon="favorite" id="core_icon_button"></core-icon-button>
-          
-          </core-toolbar>
-        <section id="section" content>
-          <paper-shadow z="1">
-            <div class="card-title">Objetivo</div>
-            <div class="card-text">{{selectedC.objetivo}}</div>
-          </paper-shadow>
-      </section>
-      
-    <section id="section2" content>
-      <paper-shadow z="1">
-        <div class="card-title">Qu&eacute; podr&eacute; hacer?</div>
-        <div class="card-text">
-          <template repeat="{{text, index in selectedC.hacer}}">
-            <paper-item>{{text}}</paper-item>
-          </template>
-        </div>
-     </paper-shadow>
- </section>
- <section id="section3" content>
-  <paper-shadow z="1">
-      <div class="card-title">Qu&eacute; debo cubrir?</div>
-    <div class="card-text">
-      <template repeat="{{text, index in selectedC.cubrir}}">
-         <paper-item>{{text}}</paper-item>
-      </template>
-     
-   </div>
- </paper-shadow>
-<section id="section4" content>
-  <paper-shadow z="1">
-            <div class="card-title">D&oacute;nde podr&eacute; trabajar?</div>
-    <div class="card-text">
-      <template repeat="{{text, index in selectedC.trabajar}}">
-         <paper-item>{{text}}</paper-item>
-       </template>
-   </div>
+		<section id="details">
+			<div class="card" layout horizontal hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}" hero>
+				<div class="card-left {{wide}}" style="background:{{selectedC.color}};" hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}-art" hero>
+					<!-- VIDEO -->
+					<youtube-embed width="200" height="400" autohide="1" autoplay="1" videoid="OWsyrnOBsJs"></youtube-embed>
+				</div>
+				<div class="card-right" flex>
+					<core-header-panel class="panel" mode="waterfall-tall">
+					<core-toolbar id="core_toolbar" class="core-header" style="background:{{selectedC.color}};">
+					<core-icon-button icon="arrow-back" id="core_icon_button" on-tap="{{transition}}"></core-icon-button>
+					<div id="div" flex>{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}
+					</div>
+					<core-icon-button icon="favorite" id="core_icon_button" on-tap="{{showForm}}"></core-icon-button>
+					
+				</core-toolbar>
+				<section id="section" content>
+					<paper-shadow z="1">
+					<div class="card-title">Objetivo</div>
+					<div class="card-text">{{selectedC.objetivo}}</div>
+				</paper-shadow>
+			</section>
+			
+			<section id="section2" content>
+				<paper-shadow z="1">
+				<div class="card-title">Qu&eacute; podr&eacute; hacer?</div>
+				<div class="card-text">
+					<template repeat="{{text, index in selectedC.hacer}}">
+						<paper-item>{{text}}</paper-item>
+					</template>
+				</div>
+			</paper-shadow>
+		</section>
+		<section id="section3" content>
+			<paper-shadow z="1">
+			<div class="card-title">Qu&eacute; debo cubrir?</div>
+			<div class="card-text">
+				<template repeat="{{text, index in selectedC.cubrir}}">
+				 <paper-item>{{text}}</paper-item>
+			 </template>
+			 
+		 </div>
+	 </paper-shadow>
+	 <section id="section4" content>
+		<paper-shadow z="1">
+		<div class="card-title">D&oacute;nde podr&eacute; trabajar?</div>
+		<div class="card-text">
+			<template repeat="{{text, index in selectedC.trabajar}}">
+			 <paper-item>{{text}}</paper-item>
+		 </template>
+	 </div>
  </paper-shadow>
 </section>
 </core-header-panel>
@@ -277,41 +270,83 @@ video {
 
 </core-animated-pages>
 
+<section>
+<paper-action-dialog backdrop autoCloseDisabled transition="core-transition-center" id="contacto" heading="Contactanos">
+		<form method = "POST" action = "" name = "form" onSubmit = "js/validacion.js">
+        <paper-input label="Nombre completo" floatingLabel id="nombre" name="nombreCompleto" required ></paper-input>
+        <div>
+      <span>Edad</span>
+    </div>
+    <paper-slider pin min="17" max="30" value="17"></paper-slider>
+		<br>
+        <paper-input label="Escuela de procedencia" floatingLabel id="escuela" name="escuelaProcedencia" required ></paper-input> 
+        <br>
+        <paper-input label="Correo electrónico" floatingLabel id="correo" name = "correoElectronico"required ></paper-input>    
+        <br> 
+        <paper-input label="Carrera de inter&eacute;s" flex id="carrera" value="{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}" disabled ></paper-input>
+		</form>
+      <paper-button dismissive>Descartar</paper-button>
+      <paper-button affirmative autofocus><core-icon icon="send"></core-icon>Enviar</paper-button>
+    </paper-action-dialog>
+       </section>
+
+
 <core-media-query query="min-width: {{responsiveWidth}}" queryMatches="{{wide}}"></core-media-query>
 
 
 </template>
 <script>
-  Polymer('upb-app', {
-    page: 0,
-    responsiveWidth: '700px',
-    
-    items: [
-    { nombre: 'en Software', tipo: 'Ing.', color: '#4CAF50',
-    objetivo: 'Formar ingenieros capaces de desarrollar soluciones en software con calidad y eficiencia, quienes contribuyan al crecimiento y progreso de la sociedad.',
-    hacer: ['Disenar y desarrollar software de calidad, con capacidad para gestionar, administrar e implementar proyectos en el campo de las Tecnologías de la Informacion.','Analisis, diseno, construcción y desarrollo de software a la medida del cliente.','Administracion de Bases de Datos.','Administracion de Proyectos'],
-    cubrir: ['Interés por desarrollar soluciones a problemas en su entorno',' Disposición de trabajo en equipo','Gusto por las tecnologías computacionales','Compromiso y motivacion'],
-    trabajar: ['Empresas de entorno publico y privado con areas de desarrollo de software','Fabricas de software, empresas desarrolladoras de software.','Tu propia empresa.']},
+	Polymer('upb-app', {
+		page: 0,
+		responsiveWidth: '700px',
+		
+		items: [
+		{ nombre: 'en Software', tipo: 'Ing.', color: '#4CAF50',
+		objetivo: 'Formar ingenieros capaces de desarrollar soluciones en software con calidad y eficiencia, quienes contribuyan al crecimiento y progreso de la sociedad.',
+		hacer: ['Diseñar y desarrollar software de calidad, con capacidad para gestionar, administrar e implementar proyectos en el campo de las Tecnologías de la Información.','Análisis, diseño, construcción y desarrollo de software a la medida del cliente.','Administración de Bases de Datos.','Administración de Proyectos'],
+		cubrir: ['Interés por desarrollar soluciones a problemas en su entorno',' Disposición de trabajo en equipo','Gusto por las tecnologías computacionales','Compromiso y motivación'],
+		trabajar: ['Empresas de entorno público y privado con areas de desarrollo de software','Fabricas de software, empresas desarrolladoras de software.','Tu propia empresa.'],
+		video:'https://mtc.cdn.vine.co/r/videos/B712744A6D1018610837969399808_16a0a631224.4.4.420805408970244791_hrGfZ99fDO.59JRct3pm0ZifuAmFeVPTJm0nKz0TCMp_RLGvX4Ih1c3VijrfY6O9.mp4?versionId=W._kB8ta6E0L3i40Mi.j9WbmgQJwxCIq'},
 
-    { nombre: 'en Terapia Fisica', tipo: 'Lic.', color: '#C2185B'},
+		{ nombre: 'en Terapia Física', tipo: 'Lic.', color: '#C2185B',
+		objetivo:'Formar licenciados en terapia física que contribuyan en la rehabilitación integral de las personas con alteraciones musculares y esqueléticas, capacitados para evaluar e implementar técnicas de rehabilitación física.',
+		hacer:['Te permitirá ser promotor de la salud y atender lesiones nerviosas, musculares y esqueléticas del cuerpo humano a través del ejercicio terapéutico y agentes físicos.'],
+		cubrir:['Interés por las Ciencias de la Salud, la Terapia Física y la Rehabilitación','Espíritu de servicio','Responsabilidad y disposición de trabajo en equipo'],
+		trabajar:['Hospitales y clínicas públicas y privadas','Centros de rehabilitación integral','Práctica privada','Instituciones gubernamentales de desarrollo social']},
 
-    { nombre: 'en Nutricion', tipo: 'Lic.', color: '#FF5722' },
+		{ nombre: 'en Nutrición', tipo: 'Lic.', color: '#FF5722',
+		objetivo:'Formar profesionales competentes en valoraciones nutricionales y su aplicación clínica y social, capaces de administrar servicios de alimentación con estándares de calidad',
+		hacer:['Desarrollarás tratamientos nutricionales a la población para contribuir a un estilo de vida saludable','Planificar y gestionar intervenciones orientadas a dar solución a los problemas alimentarios existentes.'],
+		cubrir:['Afinidad de trabajo comunitario','Disposición de trabajo en equipo y espíritu de servicio','Actitud proactiva y propositiva'],
+		trabajar:['Hospitales y clínicas públicas y privadas como: IMSS, ISSSTE, SESA, DIF.','Ámbito industrial comercial y de servicios','Docencia en el campo de la nutrición','Empresa propia','Instituciones públicas y privadas orientadas a la salud y el deporte'] },
 
-    { nombre: 'de Empresas Turisticas', tipo: 'Lic. en Admon.', color: '#9C27B0' },
+		{ nombre: 'de Empresas Turisticas', tipo: 'Lic. en Admon.', color: '#9C27B0',
+		objetivo:'Formar profesionistas altamente competentes en la administración de empresas enfocadas al sector turístico, que le permitan contribuir e impulsar el desarrollo regional y nacional.',
+		hacer:['Crear y administrar empresas turísticas, contribuyendo a nuevas propuestas para el desarrollo de las mismas, impulsándolas a nivel regional y nacional de una manera sustentable.'],
+		cubrir:['Actitud de iniciativa y emprendedora','Deseo de superación','Habilidad verbal y matemática','Capacidad de analizar problemas y proponer soluciones alternativas'],
+		trabajar:['Industria hotelera y de servicio de hospedaje','Administración de centros recreativos y holísticos','Agencias de viaje y compañías de excursiones','Dependencias oficiales del turismo','Comercialización de productos turísticos'] },
 
-    { nombre: 'y Gestion Empresarial', tipo: 'Lic. en Admon.', color: '#FFC107' }
-    
-    ],
-    selectedC: null,
-    transition: function(e) {
-      if (this.page === 0 && e.target.templateInstance.model.item) {
-        this.selectedC = e.target.templateInstance.model.item;
-        this.page = 1;
-      } else {
-        this.page = 0;
-      }
-    }
-  });
+		{ nombre: 'y Gestión Empresarial', tipo: 'Lic. en Admon.', color: '#FFC107',
+		objetivo:'Formar profesionistas con capacidades gerenciales que respondan a los desafíos a los que se enfrentan a las organizaciones en ambientes de incertidumbre, dirigiendo eficazmente sus recursos y funciones.',
+		hacer:['Crear, desarrollar y administrar empresas, así como gestionar proyectos empresariales para el crecimiento y desarrollo de la economía local y regional.'],
+		cubrir:['Capacidad de análisis','Gusto por la investigación y la lectura','Personalidad creativa','Autodisciplina y responsabilidad'],
+		trabajar:['Empresa propia','Incubadoras de negocios','Empresas comerciales, de servicios, agropecuarias e industriales','Consultorías publicas y privadas','Dependencias gubernamentales federales, estatales y municipales'] }
+		
+		],
+		selectedC: null,
+		transition: function(e) {
+			if (this.page === 0 && e.target.templateInstance.model.item) {
+				this.selectedC = e.target.templateInstance.model.item;
+				this.page = 1;
+			} else {
+				this.page = 0;
+			}
+		},
+		showForm: function(e){
+			this.$.contacto.open();
+		}
+
+	});
 </script>
 </polymer-element>
 

@@ -1,0 +1,19 @@
+{
+  "name": "youtube-embed",
+  "version": "1.0.0",
+  "description": "Web Component wrapper for Youtube's player using Polymer",
+  "license": "MIT",
+  "main": "dist/youtube.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.2.4"
+  }
+}
