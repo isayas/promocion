@@ -10,7 +10,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style"
 	content="black-translucent" >
 	<meta name="format-detection" content="telephone=no">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 
 	<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
@@ -44,15 +44,16 @@
 </script>
 <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 <link href="bower_components/core-animated-pages/core-animated-pages.html" rel="import">
-<link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+<link href="bower_components/core-toolbar/core-toolbar.html" rel="import">
+<link href="bower_components/core-header-panel/core-header-panel.html" rel="import">
 
-<link rel="import" href="bower_components/core-media-query/core-media-query.html">
+<link href="bower_components/core-media-query/core-media-query.html" rel="import">
 
-<link rel="import" href="bower_components/topeka-elements/category-icons.html">
-<link rel="import" href="bower_components/core-icon/core-icon.html">
-<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
-<link rel="import" href="bower_components/core-iconset-svg/core-iconset-svg.html">
+<link href="elements/category-icons.html" rel="import">
+
+<link href="bower_components/core-image/core-image.html" rel="import">
+<link href="bower_components/core-icon/core-icon.html" rel="import">
+<link href="bower_components/core-icon-button/core-icon-button.html" rel="import">
 <link href="bower_components/paper-shadow/paper-shadow.html" rel="import">
 <link href="bower_components/paper-item/paper-item.html" rel="import">
 <link href="bower_components/paper-dialog/paper-action-dialog.html" rel="import">
@@ -60,299 +61,220 @@
 <link href="bower_components/paper-slider/paper-slider.html" rel="import">
 <link href="bower_components/paper-button/paper-button.html" rel="import">
 
-<link href="bower_components/youtube-embed/dist/youtube.html" rel="import">
+<link href="bower_components/social-button/social-button.html" rel="import">
+<!--<link href="bower_components/youtube-embed/dist/youtube.html" rel="import">-->
 
 <style>
 	html,body {
 		margin: 0;
-		background-color: #E5E5E5;
-		font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-	}
-	/*
-	upb-app {
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-	} */
-	.blue {
-		position: absolute;
-		top: 0;
-		right: 0;
-		left: 0;
-		height: 350px;
-		background: #303F9F;
+		background-color: #f9f9f9;
+		font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial; 
 	}
 </style>
 </head>
 
-<body unresolved>
+<body fullbleed vertical layout>
 	<polymer-element name="upb-app">
 	<template>
-		<style>
-			section {
-				padding: 5px;
-			}
-			section > div {
-				padding: 5px;
-				font-size: 16px;
-			}
-			.chip-container {
-				position: absolute;
-				top: 275px;
-				right: 0;
-				left: 0;
-				text-align: center;
-			}
-			.chip {
-				display: inline-block;
-				position: relative;
-				border-radius: 3px;
-				margin: 4px;
-				overflow: hidden;
-				text-align: start;
-				background-color: #fff;
-				box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
-			}
-			.chip-top {
-				width: 200px;
-				height: 200px;
-			}
-			.chip-bottom {
-				padding: 8px;
-				line-height: 1.5;
-			}
-			.chip-album-title {
-				font-weight: bold;
-			}
-			#details {
-				padding: 200px 10% 0;
-			}
-			.card {
-				height: 400px;
-				border-radius: 3px;
-				text-align: start;
-				overflow: hidden;
-				background: #fff;
-				box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			}
-			.card-left {
-				width: 200px;
-			}
-			.card-left.false {
-				display: none;
-			}
-			.panel {
-				width: 100%;
-				height: 400px;
-			}
-			#core_toolbar {
-				color: rgb(241, 241, 241);
-				fill: rgb(241, 241, 241);
-			}
-			.core-header {
-				height: 60px;
-				line-height: 60px;
-				font-size: 18px;
-				padding: 0 10px;
-				background-color: #4F7DC9;
-				color: #FFF;
-				transition: height 0.2s;
-			}
-			.core-header.tall {
-				height: 180px;
-			}
-			.card-icon {
-				border-radius: 50%;
-				width: 60px;
-				height: 60px;
-				margin-right: 16px;
-			}
-			.card-album-title {
-				font-size: 2em;
-			}
-			.card-title {
-				font-size: 22px;
-				color: rgb(136, 136, 136);
-			}
-			.card-text {
-				font-size: 16px;
-				background-color: #fafafa;
-				padding: 16px;
-			}
 
-			html /deep/ paper-action-dialog::shadow #scroller {
-    height: 300px;
-    width: 340px;
-}
-		</style>
-		<core-animated-pages selected="{{page}}" transitions="hero-transition" on-core-animated-pages-transition-end="{{complete}}">
+		<link href="css/app.css" rel="stylesheet">
 
-		<section>
-
-			<div class="chip-container" hero-p on-tap="{{transition}}">
-
-				<template repeat="{{items as item}}">
-
-					<div class="chip" hero-id="{{item.tipo}}-{{item.nombre}}" hero?="{{selectedC === item }}">
-						<div class="chip-top" style="background:{{item.color}};" hero-id="{{item.tipo}}-{{item.nombre}}-art" hero?="{{selectedC === item}}"></div>
-						<div class="chip-bottom">
-							<div class="chip-album-title">{{item.tipo}}</div>
-							<div class="chip-artist">{{item.nombre}}</div>
-						</div>
-					</div>
-				</template>
-			</div>
-		</section>
-
-		<section id="details">
-			<div class="card" layout horizontal hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}" hero>
-				<div class="card-left {{wide}}" style="background:{{selectedC.color}};" hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}-art" hero>
-					<!-- VIDEO -->
-					<youtube-embed width="200" height="400" autohide="1" autoplay="1" videoid="OWsyrnOBsJs"></youtube-embed>
-				</div>
-				<div class="card-right" flex>
-					<core-header-panel class="panel" mode="waterfall-tall">
-					<core-toolbar id="core_toolbar" class="core-header" style="background:{{selectedC.color}};">
-					<core-icon-button icon="arrow-back" id="core_icon_button" on-tap="{{transition}}"></core-icon-button>
-					<div id="div" flex>{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}
-					</div>
-					<core-icon-button icon="favorite" id="core_icon_button" on-tap="{{showForm}}"></core-icon-button>
-					
-				</core-toolbar>
-				<section id="section" content>
-					<paper-shadow z="1">
-					<div class="card-title">Objetivo</div>
-					<div class="card-text">{{selectedC.objetivo}}</div>
-				</paper-shadow>
-			</section>
+		<core-toolbar id="navheader" class="tall">
+      <div class="bottom" layout vertical>
+        <span>UNIVERSIDAD POLIT&Eacute;CNICA DE BACALAR</span>
+        <span>FORMANDO TRIUNFADORES</span>
+      </div>
+  	</core-toolbar>
 			
-			<section id="section2" content>
-				<paper-shadow z="1">
-				<div class="card-title">Qu&eacute; podr&eacute; hacer?</div>
-				<div class="card-text">
-					<template repeat="{{text, index in selectedC.hacer}}">
-						<paper-item>{{text}}</paper-item>
+		<core-animated-pages selected="{{page}}" transitions="hero-transition slide-up slide-down cross-fade list-cascade" on-core-animated-pages-transition-end="{{complete}}">
+			<section>
+				<div class="chip-container" hero-p on-tap="{{transition}}">
+					<template repeat="{{items as item}}">
+						<div class="chip" hero-id="{{item.tipo}}-{{item.nombre}}" hero?="{{selectedC === item }}">
+							<div class="chip-top" style="background:{{item.color}};" hero-id="{{item.tipo}}-{{item.nombre}}-art" hero?="{{selectedC === item}}" flex relative>
+								<div fit layout vertical center center-justified>
+									<div class="category-bg-wrapper" relative>
+										<core-icon icon="category-icons:{{item.nombre}}" class="category-tile-bg" fit aria-label="{{item.nombre}}" role="img"></core-icon>
+									</div>
+								</div>
+							</div>
+							<div class="chip-bottom">
+								<div class="chip-title">{{item.tipo}}</div>
+								<div class="chip-name">{{item.nombre}}</div>
+							</div>
+						</div>
 					</template>
 				</div>
-			</paper-shadow>
-		</section>
-		<section id="section3" content>
-			<paper-shadow z="1">
-			<div class="card-title">Qu&eacute; debo cubrir?</div>
-			<div class="card-text">
-				<template repeat="{{text, index in selectedC.cubrir}}">
-				 <paper-item>{{text}}</paper-item>
-			 </template>
-			 
-		 </div>
-	 </paper-shadow>
-	 <section id="section4" content>
-		<paper-shadow z="1">
-		<div class="card-title">D&oacute;nde podr&eacute; trabajar?</div>
-		<div class="card-text">
-			<template repeat="{{text, index in selectedC.trabajar}}">
-			 <paper-item>{{text}}</paper-item>
-		 </template>
-	 </div>
- </paper-shadow>
-</section>
-</core-header-panel>
+			</section>
 
+			<section id="details" flex>
+				<div class="card" layout horizontal hero-id="{{selectedC.tipo}}-{{selectedC.nombre}}" hero>
+					<div class="card-right" flex>
+						<core-header-panel class="panel" mode="waterfall-tall">
+							<core-toolbar id="core_toolbar" class="core-header" style="background:{{selectedC.color}};">
+								<core-icon-button icon="arrow-back" id="core_icon_button" on-tap="{{transition}}"></core-icon-button>
+								<div id="div" flex>{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}
+								</div>
+								<core-icon-button icon="favorite" id="core_icon_button" on-tap="{{showForm}}"></core-icon-button>
+							</core-toolbar>
+							<div>
+								<section id="section1" content>
+									<paper-shadow z="1">
+										<div>
+											<core-icon icon="category-icons:objetivo" class="card-icon" role="img"></core-icon>
+										</div>
+										<div class="card-title">Objetivo</div>
+										<br>
+										<div class="card-text">{{selectedC.objetivo}}</div>
+									</paper-shadow>
+								</section>
 
-</div>
+								<section id="section2" content>
+									<paper-shadow z="1">
+										<core-icon icon="category-icons:hacer" class="card-icon" role="img"></core-icon>
+										<div class="card-title">Qu&eacute; podr&eacute; hacer?</div>
+										<br>
+										<div class="card-text">
+											<template repeat="{{text, index in selectedC.hacer}}">
+												<paper-item>{{text}}</paper-item>
+											</template>
+										</div>
+									</paper-shadow>
+								</section>
 
+								<section id="section3" content>
+									<paper-shadow z="1">
+										<div>
+											<core-icon icon="category-icons:cubrir" class="card-icon" role="img"></core-icon>
+										</div>
+										<div class="card-title">Qu&eacute; debo cubrir?</div>
+										<br>
+										<div class="card-text">
+											<template repeat="{{text, index in selectedC.cubrir}}">
+												<paper-item>{{text}}</paper-item>
+											</template>
+										</div>
+									</paper-shadow>
+								</section>
 
+								<section id="section4" content>
+									<paper-shadow z="1">
+										<div>
+											<core-icon icon="category-icons:trabajar" class="card-icon" role="img"></core-icon>
+										</div>
+										<div class="card-title">D&oacute;nde podr&eacute; trabajar?</div>
+										<br>
+										<div class="card-text">
+											<template repeat="{{text, index in selectedC.trabajar}}">
+												<paper-item>{{text}}</paper-item>
+											</template>
+										</div>
+									</paper-shadow>
+								</section>
+							</div>
+						</core-header-panel>
+					</div>
+				</div>
+			</section>
+		</core-animated-pages>
+	
+		<paper-action-dialog id="socialDialog" heading="Siguenos" backdrop transition="core-transition-fade">
+			<div vertical layout>
+				<twitter-button type="follow" width="200" height="40" user="upbacalar"></twitter-button>
+				<twitter-button type="hashtag" width="160" height="40" text="Yo soy un Triunfador" hashtag="upbacalar"></twitter-button>
+				<facebook-button href="http://www.facebook.com/Upbacalar" layout="standard" width="220" height="40"></facebook-button>
+			</div>
+		</paper-action-dialog>		
+	
+		<paper-action-dialog backdrop autoCloseDisabled transition="core-transition-center" id="contacto" heading="Contactanos">
+			<div>
+				<paper-button role="button" tabindex="0" on-tap="mailto:admisiones@upb.edu.mx"><core-icon icon="mail" aria-label="mail" role="img"></core-icon>admisiones@upb.edu.mx</paper-button>
 
-</section>
+				<paper-button role="button" tabindex="0" on-tap="tel:9838342340"><core-icon icon="settings-phone" aria-label="settings-phone" role="img"></core-icon>983 83 42 340</paper-button>
 
-</core-animated-pages>
+				<paper-button role="button" tabindex="3" on-tap="{{showSocial}}"><core-icon icon="thumb-up" aria-label="thumb-up" role="img"></core-icon>Redes Sociales</paper-button>
+			</div>
+			<h4>Para m&aacute;s informaci&oacute;n env&iacute;anos:</h4>
+	
+			<form method="POST" action="" name="formulario" onSubmit="js/validacion.js">
+				<div style="width:90%" vertical layout>
+					<paper-input label="Nombre completo" floatingLabel id="nombre" name="nombreCompleto" required ></paper-input>
+					<br>
+					<span>Edad</span>
+					<paper-slider pin min="17" max="30" value="17"></paper-slider>
+					<paper-input label="Escuela de procedencia" floatingLabel id="escuela" name="escuelaProcedencia" required ></paper-input> 
+					<paper-input label="Correo electr&oacute;nico" floatingLabel id="correo" name = "correoElectronico"required ></paper-input>    
+					<paper-input label="Carrera de inter&eacute;s" flex id="carrera" value="{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}" disabled ></paper-input>
+				</div>
+			</form>
 
-<section>
-<paper-action-dialog backdrop autoCloseDisabled transition="core-transition-center" id="contacto" heading="Contactanos">
-		<form method = "POST" action = "" name = "form" onSubmit = "js/validacion.js">
-        <paper-input label="Nombre completo" floatingLabel id="nombre" name="nombreCompleto" required ></paper-input>
-        <div>
-      <span>Edad</span>
-    </div>
-    <paper-slider pin min="17" max="30" value="17"></paper-slider>
-		<br>
-        <paper-input label="Escuela de procedencia" floatingLabel id="escuela" name="escuelaProcedencia" required ></paper-input> 
-        <br>
-        <paper-input label="Correo electrónico" floatingLabel id="correo" name = "correoElectronico"required ></paper-input>    
-        <br> 
-        <paper-input label="Carrera de inter&eacute;s" flex id="carrera" value="{{selectedC.tipo}}&nbsp;{{selectedC.nombre}}" disabled ></paper-input>
-		</form>
-      <paper-button dismissive>Descartar</paper-button>
-      <paper-button affirmative autofocus><core-icon icon="send"></core-icon>Enviar</paper-button>
-    </paper-action-dialog>
-       </section>
+			<paper-button dismissive>Descartar</paper-button>
+			<paper-button affirmative autofocus><core-icon icon="send"></core-icon>Enviar</paper-button>
+		</paper-action-dialog>
 
+		<core-media-query query="min-width: {{responsiveWidth}}" queryMatches="{{wide}}"></core-media-query>
 
-<core-media-query query="min-width: {{responsiveWidth}}" queryMatches="{{wide}}"></core-media-query>
+	</template>
 
+	<script>
+		Polymer('upb-app', {
+			page: 0,
+			responsiveWidth: '700px',
+			
+			items: [
+			{ nombre: 'en Software', tipo: 'Ing.', color: '#4CAF50',
+			objetivo: 'Formar ingenieros capaces de desarrollar soluciones en software con calidad y eficiencia, quienes contribuyan al crecimiento y progreso de la sociedad.',
+			hacer: ['Diseñar y desarrollar software de calidad, con capacidad para gestionar, administrar e implementar proyectos en el campo de las Tecnologías de la Información.','Análisis, diseño, construcción y desarrollo de software a la medida del cliente.','Administración de Bases de Datos.','Administración de Proyectos'],
+			cubrir: ['Interés por desarrollar soluciones a problemas en su entorno',' Disposición de trabajo en equipo','Gusto por las tecnologías computacionales','Compromiso y motivación'],
+			trabajar: ['Empresas de entorno público y privado con areas de desarrollo de software','Fabricas de software, empresas desarrolladoras de software.','Tu propia empresa.'],
+			video:'https://mtc.cdn.vine.co/r/videos/B712744A6D1018610837969399808_16a0a631224.4.4.420805408970244791_hrGfZ99fDO.59JRct3pm0ZifuAmFeVPTJm0nKz0TCMp_RLGvX4Ih1c3VijrfY6O9.mp4?versionId=W._kB8ta6E0L3i40Mi.j9WbmgQJwxCIq'},
 
-</template>
-<script>
-	Polymer('upb-app', {
-		page: 0,
-		responsiveWidth: '700px',
-		
-		items: [
-		{ nombre: 'en Software', tipo: 'Ing.', color: '#4CAF50',
-		objetivo: 'Formar ingenieros capaces de desarrollar soluciones en software con calidad y eficiencia, quienes contribuyan al crecimiento y progreso de la sociedad.',
-		hacer: ['Diseñar y desarrollar software de calidad, con capacidad para gestionar, administrar e implementar proyectos en el campo de las Tecnologías de la Información.','Análisis, diseño, construcción y desarrollo de software a la medida del cliente.','Administración de Bases de Datos.','Administración de Proyectos'],
-		cubrir: ['Interés por desarrollar soluciones a problemas en su entorno',' Disposición de trabajo en equipo','Gusto por las tecnologías computacionales','Compromiso y motivación'],
-		trabajar: ['Empresas de entorno público y privado con areas de desarrollo de software','Fabricas de software, empresas desarrolladoras de software.','Tu propia empresa.'],
-		video:'https://mtc.cdn.vine.co/r/videos/B712744A6D1018610837969399808_16a0a631224.4.4.420805408970244791_hrGfZ99fDO.59JRct3pm0ZifuAmFeVPTJm0nKz0TCMp_RLGvX4Ih1c3VijrfY6O9.mp4?versionId=W._kB8ta6E0L3i40Mi.j9WbmgQJwxCIq'},
+			{ nombre: 'en Terapia Física', tipo: 'Lic.', color: '#C2185B',
+			objetivo:'Formar licenciados en terapia física que contribuyan en la rehabilitación integral de las personas con alteraciones musculares y esqueléticas, capacitados para evaluar e implementar técnicas de rehabilitación física.',
+			hacer:['Te permitirá ser promotor de la salud y atender lesiones nerviosas, musculares y esqueléticas del cuerpo humano a través del ejercicio terapéutico y agentes físicos.'],
+			cubrir:['Interés por las Ciencias de la Salud, la Terapia Física y la Rehabilitación','Espíritu de servicio','Responsabilidad y disposición de trabajo en equipo'],
+			trabajar:['Hospitales y clínicas públicas y privadas','Centros de rehabilitación integral','Práctica privada','Instituciones gubernamentales de desarrollo social']},
 
-		{ nombre: 'en Terapia Física', tipo: 'Lic.', color: '#C2185B',
-		objetivo:'Formar licenciados en terapia física que contribuyan en la rehabilitación integral de las personas con alteraciones musculares y esqueléticas, capacitados para evaluar e implementar técnicas de rehabilitación física.',
-		hacer:['Te permitirá ser promotor de la salud y atender lesiones nerviosas, musculares y esqueléticas del cuerpo humano a través del ejercicio terapéutico y agentes físicos.'],
-		cubrir:['Interés por las Ciencias de la Salud, la Terapia Física y la Rehabilitación','Espíritu de servicio','Responsabilidad y disposición de trabajo en equipo'],
-		trabajar:['Hospitales y clínicas públicas y privadas','Centros de rehabilitación integral','Práctica privada','Instituciones gubernamentales de desarrollo social']},
+			{ nombre: 'en Nutrición', tipo: 'Lic.', color: '#FF5722',
+			objetivo:'Formar profesionales competentes en valoraciones nutricionales y su aplicación clínica y social, capaces de administrar servicios de alimentación con estándares de calidad',
+			hacer:['Desarrollarás tratamientos nutricionales a la población para contribuir a un estilo de vida saludable','Planificar y gestionar intervenciones orientadas a dar solución a los problemas alimentarios existentes.'],
+			cubrir:['Afinidad de trabajo comunitario','Disposición de trabajo en equipo y espíritu de servicio','Actitud proactiva y propositiva'],
+			trabajar:['Hospitales y clínicas públicas y privadas como: IMSS, ISSSTE, SESA, DIF.','Ámbito industrial comercial y de servicios','Docencia en el campo de la nutrición','Empresa propia','Instituciones públicas y privadas orientadas a la salud y el deporte'] },
 
-		{ nombre: 'en Nutrición', tipo: 'Lic.', color: '#FF5722',
-		objetivo:'Formar profesionales competentes en valoraciones nutricionales y su aplicación clínica y social, capaces de administrar servicios de alimentación con estándares de calidad',
-		hacer:['Desarrollarás tratamientos nutricionales a la población para contribuir a un estilo de vida saludable','Planificar y gestionar intervenciones orientadas a dar solución a los problemas alimentarios existentes.'],
-		cubrir:['Afinidad de trabajo comunitario','Disposición de trabajo en equipo y espíritu de servicio','Actitud proactiva y propositiva'],
-		trabajar:['Hospitales y clínicas públicas y privadas como: IMSS, ISSSTE, SESA, DIF.','Ámbito industrial comercial y de servicios','Docencia en el campo de la nutrición','Empresa propia','Instituciones públicas y privadas orientadas a la salud y el deporte'] },
+			{ nombre: 'de Empresas Turisticas', tipo: 'Lic. en Admon.', color: '#9C27B0',
+			objetivo:'Formar profesionistas altamente competentes en la administración de empresas enfocadas al sector turístico, que le permitan contribuir e impulsar el desarrollo regional y nacional.',
+			hacer:['Crear y administrar empresas turísticas, contribuyendo a nuevas propuestas para el desarrollo de las mismas, impulsándolas a nivel regional y nacional de una manera sustentable.'],
+			cubrir:['Actitud de iniciativa y emprendedora','Deseo de superación','Habilidad verbal y matemática','Capacidad de analizar problemas y proponer soluciones alternativas'],
+			trabajar:['Industria hotelera y de servicio de hospedaje','Administración de centros recreativos y holísticos','Agencias de viaje y compañías de excursiones','Dependencias oficiales del turismo','Comercialización de productos turísticos'] },
 
-		{ nombre: 'de Empresas Turisticas', tipo: 'Lic. en Admon.', color: '#9C27B0',
-		objetivo:'Formar profesionistas altamente competentes en la administración de empresas enfocadas al sector turístico, que le permitan contribuir e impulsar el desarrollo regional y nacional.',
-		hacer:['Crear y administrar empresas turísticas, contribuyendo a nuevas propuestas para el desarrollo de las mismas, impulsándolas a nivel regional y nacional de una manera sustentable.'],
-		cubrir:['Actitud de iniciativa y emprendedora','Deseo de superación','Habilidad verbal y matemática','Capacidad de analizar problemas y proponer soluciones alternativas'],
-		trabajar:['Industria hotelera y de servicio de hospedaje','Administración de centros recreativos y holísticos','Agencias de viaje y compañías de excursiones','Dependencias oficiales del turismo','Comercialización de productos turísticos'] },
-
-		{ nombre: 'y Gestión Empresarial', tipo: 'Lic. en Admon.', color: '#FFC107',
-		objetivo:'Formar profesionistas con capacidades gerenciales que respondan a los desafíos a los que se enfrentan a las organizaciones en ambientes de incertidumbre, dirigiendo eficazmente sus recursos y funciones.',
-		hacer:['Crear, desarrollar y administrar empresas, así como gestionar proyectos empresariales para el crecimiento y desarrollo de la economía local y regional.'],
-		cubrir:['Capacidad de análisis','Gusto por la investigación y la lectura','Personalidad creativa','Autodisciplina y responsabilidad'],
-		trabajar:['Empresa propia','Incubadoras de negocios','Empresas comerciales, de servicios, agropecuarias e industriales','Consultorías publicas y privadas','Dependencias gubernamentales federales, estatales y municipales'] }
-		
-		],
-		selectedC: null,
-		transition: function(e) {
-			if (this.page === 0 && e.target.templateInstance.model.item) {
-				this.selectedC = e.target.templateInstance.model.item;
-				this.page = 1;
-			} else {
-				this.page = 0;
+			{ nombre: 'y Gestión Empresarial', tipo: 'Lic. en Admon.', color: '#FFC107',
+			objetivo:'Formar profesionistas con capacidades gerenciales que respondan a los desafíos a los que se enfrentan a las organizaciones en ambientes de incertidumbre, dirigiendo eficazmente sus recursos y funciones.',
+			hacer:['Crear, desarrollar y administrar empresas, así como gestionar proyectos empresariales para el crecimiento y desarrollo de la economía local y regional.'],
+			cubrir:['Capacidad de análisis','Gusto por la investigación y la lectura','Personalidad creativa','Autodisciplina y responsabilidad'],
+			trabajar:['Empresa propia','Incubadoras de negocios','Empresas comerciales, de servicios, agropecuarias e industriales','Consultorías publicas y privadas','Dependencias gubernamentales federales, estatales y municipales'] }
+			
+			],
+			selectedC: null,
+			transition: function(e) {
+				if (this.page === 0 && e.target.templateInstance.model.item) {
+					this.selectedC = e.target.templateInstance.model.item;
+					this.page = 1;
+				} else {
+					this.page = 0;
+				}
+			},
+			showForm: function(e){
+				this.$.contacto.open();
+			},
+			showSocial: function(e){
+				this.$.socialDialog.open();
 			}
-		},
-		showForm: function(e){
-			this.$.contacto.open();
-		}
 
-	});
-</script>
+		});
+	</script>
 </polymer-element>
 
-<div class="blue"></div>
 <upb-app></upb-app>
 
 </body>
-
 </html>

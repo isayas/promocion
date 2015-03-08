@@ -1,0 +1,136 @@
+#navheader {
+  background-image: url('../images/logo_upb.png');
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-color: #002949;
+  background-size: cover;
+  font-size: inherit;
+  color: white;
+}
+#navheader::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 600ms ease-in-out;
+}
+#navheader .bottom {
+  font-size: 1.2em;
+}
+#navheader .bottom :last-child {
+  font-size: small;
+  opacity: 0.8;
+}
+
+section {
+	padding: 5px;
+}
+section > div {
+	padding: 5px;
+	font-size: 16px;
+}
+.chip-container {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	left: 0;
+	text-align: center;
+}
+.chip {
+	display: inline-block;
+	position: relative;
+	border-radius: 3px;
+	margin: 4px;
+	overflow: hidden;
+	text-align: start;
+	background-color: #fff;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+}
+.chip-top {
+	width: 280px;
+	height: 280px;
+}
+.chip-bottom {
+	padding: 8px;
+	line-height: 1.5;
+	font-size: 1.3em;
+}
+.chip-title {
+	font-weight: bold;
+}
+#details {
+	padding: 10px;
+}
+.card {
+	/*height: 400px;*/
+	border-radius: 3px;
+	text-align: start;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 10px;
+}
+.panel {
+	width: 100%;
+	height: 480px;
+}
+
+.core-header {
+	height: 60px;
+	font-size: 18px;
+	padding: 5px 10px;
+	background-color: #4F7DC9;
+	color: #FFF;
+	transition: height 0.2s;
+}
+.core-header.tall {
+	height: 180px;
+}
+
+.card-album-title {
+	font-size: 2em;
+}
+.card-icon {
+	float:left;
+	border-radius: 50%;
+	width: 64px;
+	height: 64px;
+	left: 10px;
+	top:10px;
+	background: #ccc;
+	margin-right: 16px;
+}
+.card-title {
+	font-size: 1.3em;
+	color: rgb(136, 136, 136);
+	padding: 10px 16px;
+}
+.card-text {
+	font-size: 16px;
+	background-color: #fafafa;
+	padding: 16px;
+}
+
+.category-bg-wrapper {
+	width: 100%;
+	height: 100%;
+}
+.category-bg-wrapper core-icon {
+	height: 100%;
+	width: 100%;
+}
+.category-tile-bg {
+	position: absolute !important;
+}
+
+html /deep/ paper-action-dialog::shadow #scroller {
+	height: 300px;
+	width: 340px;
+}
